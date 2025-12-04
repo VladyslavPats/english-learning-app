@@ -10,7 +10,7 @@
 ## Використані технології
 - HTML5
 - CSS3
-- JavaScript (ES6)
+- JavaScript
 - Git та GitHub для контролю версій
 
 ## Функціонал MVP
