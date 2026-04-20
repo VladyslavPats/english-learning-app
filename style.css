@@ -50,7 +50,6 @@ header {
     box-sizing: border-box;
 }
 
-/* ЗАВДАННЯ 2: Блокування скролу для меню */
 .no-scroll { overflow: hidden; }
 
 .burger-btn {
@@ -88,12 +87,11 @@ main {
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-/* ЗАВДАННЯ 1: Анімована кнопка дії */
 .auth-btn {
     width: 100%; padding: 12px;
     border: none; border-radius: 8px;
     cursor: pointer; font-weight: 600;
-    transition: all 0.3s ease; /* Плавність */
+    transition: all 0.3s ease;
 }
 
 .primary-btn { background: var(--primary-color); color: #fff; }
@@ -105,7 +103,7 @@ main {
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 .primary-btn:active:not(:disabled) {
-    transform: scale(0.95); /* Ефект занурення */
+    transform: scale(0.95);
 }
 .primary-btn:disabled {
     background-color: #cccccc; color: #666666;
@@ -123,7 +121,6 @@ input, select {
     display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 20px;
 }
 
-/* ЗАВДАННЯ 4: Фільтри та картки словника */
 .dictionary-section { margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 20px; }
 .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
 .filter-btn {
@@ -143,7 +140,6 @@ input, select {
 }
 .word-card.hidden { display: none !important; }
 
-/* ЗАВДАННЯ 3: Кнопка Like/Heart */
 .favorite-btn {
     background: none; border: none; font-size: 1.2rem;
     color: var(--secondary-text-color); cursor: pointer; transition: 0.3s;
@@ -160,6 +156,24 @@ input, select {
 }
 .close-btn { position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer;}
 
+.loader {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.fetch-error {
+    text-align: center;
+    color: var(--fail-color);
+    background-color: rgba(220, 53, 69, 0.1);
+    padding: 20px;
+    border: 1px dashed var(--fail-color);
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
 @media (min-width: 768px) {
     .task-container { grid-template-columns: repeat(2, 1fr); }
 }
@@ -167,7 +181,6 @@ input, select {
 @media (max-width: 767px) {
     .burger-btn { display: flex; }
     
-    /* ЗАВДАННЯ 2: Повноекранне меню */
     .header-controls {
         display: flex; position: fixed;
         top: 0; left: 0; width: 100vw; height: 100vh;
