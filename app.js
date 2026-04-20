@@ -32,7 +32,6 @@ function navigateTo(id) {
     document.getElementById(id).style.display = 'block';
     document.getElementById('logout-btn').style.display = (id === 'app-screen') ? 'block' : 'none';
     
-    // Якщо відкриваємо додаток, рендеримо словник
     if (id === 'app-screen') initDictionary();
 }
 
@@ -48,7 +47,6 @@ function updateUI() {
     });
 }
 
-// ЗАВДАННЯ 2: Бургер-меню та блокування скролу
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('is-open');
@@ -58,7 +56,6 @@ function toggleMobileMenu() {
 document.getElementById('burger-btn').addEventListener('click', toggleMobileMenu);
 document.getElementById('close-menu-btn').addEventListener('click', toggleMobileMenu);
 
-// Закриття меню при кліку на кнопки всередині (Контекстне закриття)
 document.querySelectorAll('#mobile-menu button').forEach(btn => {
     btn.addEventListener('click', () => {
         if(document.getElementById('mobile-menu').classList.contains('is-open')) {
@@ -67,7 +64,6 @@ document.querySelectorAll('#mobile-menu button').forEach(btn => {
     });
 });
 
-// Налаштування та теми
 document.getElementById('theme-select').addEventListener('change', (e) => {
     document.documentElement.setAttribute('data-theme', e.target.value);
     localStorage.setItem('userTheme', e.target.value);
@@ -79,7 +75,6 @@ document.getElementById('lang-select').addEventListener('change', (e) => {
     updateUI();
 });
 
-// Навігація авторизації
 document.getElementById('show-registration-btn').addEventListener('click', () => navigateTo('registration-screen'));
 document.getElementById('show-login-btn').addEventListener('click', () => navigateTo('login-screen'));
 document.getElementById('back-to-auth-reg-btn').addEventListener('click', () => navigateTo('auth-screen'));
@@ -98,21 +93,18 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 document.getElementById('settings-btn').addEventListener('click', () => document.getElementById('settings-modal').style.display = 'flex');
 document.getElementById('close-settings-btn').addEventListener('click', () => document.getElementById('settings-modal').style.display = 'none');
 
-// ЗАВДАННЯ 1: Анімована кнопка + імітація обробки
 document.getElementById('generate').addEventListener('click', function() {
     const originalText = this.textContent;
-    this.textContent = interfaceTexts[currentLang].processingText; // Текст "Обробка..."
-    this.disabled = true; // Блокуємо кнопку
+    this.textContent = interfaceTexts[currentLang].processingText;
+    this.disabled = true;
 
-    // Штучна затримка для демонстрації мікроінтеракції
     setTimeout(() => {
         this.textContent = originalText;
         this.disabled = false;
-        generateTasks(); // Викликаємо основну логіку
+        generateTasks();
     }, 800);
 });
 
-// Логіка генерації завдань (твоя базова логіка)
 function generateTasks() {
     const topic = document.getElementById('topic').value;
     const container = document.getElementById('task-container');
@@ -145,17 +137,15 @@ function generateTasks() {
     container.appendChild(btn);
 }
 
-// ЗАВДАННЯ 3 та 4: Рендер Словника, Лайки та Фільтри
 function initDictionary() {
     const container = document.getElementById('dictionary-container');
     container.innerHTML = '';
     
-    // Генеруємо всі картки
     for (const [topic, words] of Object.entries(tasks)) {
         words.forEach(word => {
             const card = document.createElement('div');
             card.className = 'word-card';
-            card.setAttribute('data-category', topic); // Атрибут для фільтрації
+            card.setAttribute('data-category', topic);
             
             card.innerHTML = `
                 <div class="word-info">
@@ -170,20 +160,17 @@ function initDictionary() {
         });
     }
 
-    // ЗАВДАННЯ 3: Обробка кліку на сердечко (classList.toggle)
     document.querySelectorAll('.favorite-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            this.classList.toggle('is-active'); // Анімація кольору та розміру
+            this.classList.toggle('is-active');
             const icon = this.querySelector('i');
-            icon.classList.toggle('fa-regular'); // Пусте сердечко
-            icon.classList.toggle('fa-solid');   // Зафарбоване сердечко
+            icon.classList.toggle('fa-regular');
+            icon.classList.toggle('fa-solid');
         });
     });
 
-    // ЗАВДАННЯ 4: Фільтрація контенту (querySelectorAll + forEach)
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            // Забираємо active у всіх, даємо поточній
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
@@ -200,7 +187,6 @@ function initDictionary() {
     });
 }
 
-// Ініціалізація теми та текстів при завантаженнии
 const savedTheme = localStorage.getItem('userTheme');
 if(savedTheme) {
     document.documentElement.setAttribute('data-theme', savedTheme);
